@@ -1,8 +1,17 @@
 # -*- coding: utf-8 -*-
 ###############################################################################
 #                                                                             #
+#                                                                             #
+# Part of Odoo. See LICENSE file for full copyright and licensing details.    #
+#                                                                             #
+#                                                                             #
 # Copyright (C) 2016  Dominic Krimmer                                         #
 #                     Luis Alfredo da Silva (luis.adasilvaf@gmail.com)        #
+#                     Diego Carvajal, diegoivanc@gmail.com                    #
+#                                                                             #
+# Co-Authors    Odoo LoCo                                                     #
+#               Localización funcional de Odoo para Colombia                  #
+#                                                                             #
 #                                                                             #
 # This program is free software: you can redistribute it and/or modify        #
 # it under the terms of the GNU Affero General Public License as published by #
@@ -17,6 +26,8 @@
 # You should have received a copy of the GNU Affero General Public License    #
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.       #
 ###############################################################################
+
+
 import logging
 import time
 
