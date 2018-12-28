@@ -1,14 +1,13 @@
-<?xml version="1.0"?>
-<openerp>
-    <data>
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
 
       <template id="l10n_co_pos_tax_js" name="l10n colombia pos tax assets" inherit_id="point_of_sale.assets">
           <xpath expr="." position="inside">
-             <!-- <script type="text/javascript" src="/l10n_co_pos_res_partner/static/src/js/main.js"></script>-->
-               <script type="text/javascript" src="/l10n_co_pos_tax/static/src/js/sequence.js"></script>
+               <script type="text/javascript" src="/l10n_co_pos_tax/static/src/js/sequence.js"/>
               <link rel="stylesheet" href="/l10n_co_pos_tax/static/src/css/pnpos.css" type="text/css"/>
           </xpath>
       </template>
+
 
    <record model="ir.ui.view" id="view_pos_config_form">
       <field name="name">pos.config.form.view</field>
@@ -21,5 +20,4 @@
       </field>
     </record>
 
-    </data>
-</openerp>
+</odoo>

@@ -1,9 +1,11 @@
-odoo.define('l10n_co_pos_tax.main', function(require) {
+odoo.define('l10n_co_pos_tax.sequence', function(require) {
     "use strict";
+
+    var rpc = require('web.rpc');
+    var models = require('point_of_sale.models');
 
     var core = require('web.core');
     var screens = require('point_of_sale.screens');
-    var models = require('point_of_sale.models');
     var devices = require('point_of_sale.devices');
     var chrome = require('point_of_sale.chrome');
     var gui = require('point_of_sale.gui');
@@ -11,11 +13,12 @@ odoo.define('l10n_co_pos_tax.main', function(require) {
     var Class = require('web.Class');
     var utils = require('web.utils');
     var PosBaseWidget = require('point_of_sale.BaseWidget');
-    var Model = require('web.DataModel');
+    //var Model = require('web.DataModel');
+    var rpc = require('web.rpc');
+
+
+
     var _t = core._t;
-
-    
-
     models.load_models([
         {
             model: 'ir.sequence',
@@ -23,6 +26,10 @@ odoo.define('l10n_co_pos_tax.main', function(require) {
             domain: function(self){ return ['|', ['name', 'in', self.config.sequence_id],
                                             ['name', 'in', self.config.sequence_refund_id]]; },
             loaded : function(self, sequences) {
+            console.log('aquiiiiiiiaaaa');
+            console.log('aquiiiiiiiaaaa');
+            console.log('aquiiiiiiiaaaa');
+            console.log('aquiiiiiiiaaaa');
                 self.dian_resolution = sequences[0];
                 self.dian_resolution_refund = sequences[1];
 
@@ -117,8 +124,10 @@ odoo.define('l10n_co_pos_tax.main', function(require) {
             return _super;
         },
         export_for_printing: function() {
+            console.log(this.pos.company_partner);
+            console.log(this.pos.dian_resolution_sequence);
             var receipt = __super__.export_for_printing.apply(this);
-            var company_partner = this.pos.company_partner[0];
+            var company_partner = this.pos.company_partner;
             var dian_resolution_sequence;
 
             if(this.get_total_with_tax() < 0) {
@@ -133,6 +142,10 @@ odoo.define('l10n_co_pos_tax.main', function(require) {
             } else {
                 receipt.company.street = "compañía sin dirección";
             }
+
+
+
+
 
             if( dian_resolution_sequence != undefined ){
                 if(dian_resolution_sequence.active_resolution != false) {
@@ -153,6 +166,7 @@ odoo.define('l10n_co_pos_tax.main', function(require) {
             
 
             receipt.company.formatedNit = company_partner.formatedNit ? company_partner.formatedNit : "no posee";
+            //receipt.company.formatedNit = "no posee";
 
             if (!this.number_next_dian) {
                 receipt.number_next_dian = this.number_next_dian;

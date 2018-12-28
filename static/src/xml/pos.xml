@@ -52,7 +52,7 @@
                   <t t-if='receipt.total_with_tax &gt; 0'>
                       Factura de Venta No.:
                   </t>
-		<t t-if="widget.pos.dian_resolution_sequence.active_resolution">
+		<t t-if="receipt.dian_resolution_sequence.active_resolution">
                     <t t-if='receipt.total_with_tax &gt; 0'>
                         <t t-esc="order.number_next_dian" />
                     </t>
@@ -63,7 +63,7 @@
 
 
                 </t>
-                <t t-if="! widget.pos.dian_resolution_sequence.active_resolution">
+                <t t-if="! receipt.dian_resolution_sequence.active_resolution">
                   <t t-esc="order.get_name()" />
                 </t>
 
@@ -251,7 +251,7 @@
                 <t t-if='receipt.total_with_tax &lt; 0'>
                   <b>Devolución No.:</b>
                 </t>
-                <t t-if="widget.pos.dian_resolution_sequence.active_resolution">
+                <t t-if="receipt.dian_resolution_sequence.active_resolution">
                     <t t-if='receipt.total_with_tax &gt; 0'>
                         <t t-esc="order.number_next_dian" />
                     </t>
@@ -262,13 +262,13 @@
 
 
                 </t>
-                <t t-if="! widget.pos.dian_resolution_sequence.active_resolution">
+                <t t-if="! receipt.dian_resolution_sequence.active_resolution">
                   <t t-esc="order.get_name()" />
                 </t><br />
 
 
                 <t t-if='receipt.total_with_tax &gt; 0'>
-                    <t t-if="widget.pos.dian_resolution_sequence.active_resolution">
+                    <t t-if="receipt.dian_resolution_sequence.active_resolution">
                       <br />
                       Rango Facturación <t t-esc="receipt.dian_resolution_sequence.number_from" /> hasta <t t-esc="receipt.dian_resolution_sequence.number_to" /><br />
                         Autorización DIAN número: <t t-esc="receipt.dian_resolution_sequence.resolution_number" /><br />

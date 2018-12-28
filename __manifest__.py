@@ -48,6 +48,6 @@ Colombia Point of Sale tax extension:
     'data': [
         'views/pos_view.xml',
     ],
-    'qweb': ['static/src/xml/*.xml'],
+    'qweb': ['static/src/xml/pos.xml'],
     'installable': True,
 }
