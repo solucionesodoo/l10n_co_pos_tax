@@ -145,8 +145,6 @@ odoo.define('l10n_co_pos_tax.sequence', function(require) {
 
 
 
-
-
             if( dian_resolution_sequence != undefined ){
                 if(dian_resolution_sequence.active_resolution != false) {
                     function zero_pad(num,size){
@@ -159,11 +157,14 @@ odoo.define('l10n_co_pos_tax.sequence', function(require) {
                     dian_resolution_sequence.number_from  = zero_pad(dian_resolution_sequence.number_from, 4)
                     dian_resolution_sequence.number_to  = zero_pad(dian_resolution_sequence.number_to, 4)
                     receipt.dian_resolution_sequence = dian_resolution_sequence;
+                    console.log('entro  resolucion');
+                    console.log(receipt.dian_resolution_sequence);
 
+                }else{
+                console.log('entro a no resolucion');
+                receipt.dian_resolution_sequence = false;
                 }
             }
-
-            
 
             receipt.company.formatedNit = company_partner.formatedNit ? company_partner.formatedNit : "no posee";
             //receipt.company.formatedNit = "no posee";

@@ -31,7 +31,7 @@
     'name': 'Colombia - Punto de venta - tax extension',
     'category': 'Localization',
     'version': '1.0',
-    'author': '',
+    'author': 'Dominic Krimmer,Luis Alfredo da Silva (luis.adasilvaf@gmail.com),Diego Carvajal, diegoivanc@gmail.com , odoo loco',
     'license': 'AGPL-3',
     'maintainer': ' ',
     'website': ' ',
@@ -47,6 +47,7 @@ Colombia Point of Sale tax extension:
     ],
     'data': [
         'views/pos_view.xml',
+        'views/pos_config.xml',
     ],
     'qweb': ['static/src/xml/pos.xml'],
     'installable': True,
