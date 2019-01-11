@@ -256,15 +256,7 @@ class PosOrder(models.Model):
                 else:
                     taxes[key]['amount'] += val['amount']
                     # taxes[key]['subtotal'] += val['subtotal']
-
-            if order.company_id.anglo_saxon_accounting:
-                for i_line in order.lines:
-                    anglo_saxon_lines = order._anglo_saxon_sale_move_lines(i_line)
-                    all_lines.extend(anglo_saxon_lines)
-
-        _logger.info('verificando taxesss')
-        _logger.info(taxes)
-
+                    
         for key, val in taxes.items():
             type, dummy, dummy = key
             if type in 'out_refund':
@@ -310,54 +302,6 @@ class PosOrder(models.Model):
             #move.post()
         return res
 
-    @api.model
-    def _anglo_saxon_sale_move_lines(self, i_line):
-        """Return the additional move lines for sales invoices and refunds.
-
-        i_line: An account.invoice.line object.
-        res: The move line entries produced so far by the parent move_line_get.
-        """
-        order = i_line.order_id
-        company_currency = order.company_id.currency_id.id
-
-        if i_line.product_id.type in ('product', 'consu'):  # and i_line.product_id.valuation == 'real_time':
-            fpos = i_line.order_id.fiscal_position_id
-            accounts = i_line.product_id.product_tmpl_id.get_product_accounts(fiscal_pos=fpos)
-            # debit account dacc will be the output account
-
-            dacc = accounts['stock_output'].id
-            # credit account cacc will be the expense account
-            cacc = accounts['expense'].id
-            if dacc and cacc:
-                price_unit = i_line._get_anglo_saxon_price_unit() or 0.0
-                price = self.env['pos.order.line']._get_price(order, company_currency, i_line, price_unit)
-                return [
-                    (0, 0, {
-                        'name': i_line.name[:64],
-                        'debit': ((price < 0) and -price) or 0.0,
-                        'credit': ((price > 0) and price) or 0.0,
-                        'account_id': dacc,
-                        'quantity': i_line.qty,
-                        'product_id': i_line.product_id.id,
-                        'product_uom_id': i_line.product_id.uom_id.id,
-                        'partner_id': order.partner_id and self.env["res.partner"]._find_accounting_partner(
-                            order.partner_id).id or False,
-                        'move_id': order.account_move.id
-                    }),
-                    (0, 0, {
-                        'name': i_line.name[:64],
-                        'debit': ((price > 0) and price) or 0.0,
-                        'credit': ((price < 0) and -price) or 0.0,
-                        'account_id': cacc,
-                        'quantity': i_line.qty,
-                        'product_id': i_line.product_id.id,
-                        'product_uom_id': i_line.product_id.uom_id.id,
-                        'partner_id': order.partner_id and self.env["res.partner"]._find_accounting_partner(
-                            order.partner_id).id or False,
-                        'move_id': order.account_move.id
-                    }),
-                ]
-        return []
 
 
 class PosOrderLine(models.Model):
@@ -819,9 +763,3 @@ class account_cashbox_bank_statement(models.Model):
         })
 
         return result
-
-
-
-
-
-

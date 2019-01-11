@@ -124,11 +124,17 @@ odoo.define('l10n_co_pos_tax.sequence', function(require) {
             return _super;
         },
         export_for_printing: function() {
+            console.log("-...............................");
             console.log(this.pos.company_partner);
             console.log(this.pos.dian_resolution_sequence);
             var receipt = __super__.export_for_printing.apply(this);
             var company_partner = this.pos.company_partner;
             var dian_resolution_sequence;
+
+            console.log('prueba nombre');
+            console.log(company_partner);
+            console.log(company_partner[0]['street']);
+            console.log(company_partner[0]);
 
             if(this.get_total_with_tax() < 0) {
                 dian_resolution_sequence = this.pos.dian_resolution_sequence_refund;
@@ -136,11 +142,13 @@ odoo.define('l10n_co_pos_tax.sequence', function(require) {
                 dian_resolution_sequence = this.pos.dian_resolution_sequence;
             }
 
-            if(company_partner.street) {
-                var street = company_partner.street.split(",").map(function(text) { return text.trim() + '<br />'; });
+            if(company_partner[0]['street']) {
+                 console.log('prueba');
+                var street = company_partner[0]['street'].split(",").map(function(text) { return text.trim() + '<br />'; });
                 receipt.company.street = street.join("");
+
             } else {
-                receipt.company.street = "compañía sin dirección";
+                receipt.company.street = "Compañía sin Dirección";
             }
 
 
@@ -166,7 +174,7 @@ odoo.define('l10n_co_pos_tax.sequence', function(require) {
                 }
             }
 
-            receipt.company.formatedNit = company_partner.formatedNit ? company_partner.formatedNit : "no posee";
+            receipt.company.formatedNit = company_partner[0]['formatedNit'] ? company_partner[0]['formatedNit'] : "No tiene NIT";
             //receipt.company.formatedNit = "no posee";
 
             if (!this.number_next_dian) {
