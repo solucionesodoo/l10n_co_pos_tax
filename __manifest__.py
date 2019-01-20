@@ -46,6 +46,7 @@ Colombia Point of Sale tax extension:
         'l10n_co_tax_extension',
     ],
     'data': [
+        'security/ir.model.access.csv',
         'views/pos_view.xml',
         'views/pos_config.xml',
     ],
