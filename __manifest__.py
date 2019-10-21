@@ -30,7 +30,7 @@
 {
     'name': 'Colombia - Punto de venta - tax extension',
     'category': 'Localization',
-    'version': '1.0',
+    'version': '12.0',
     'author': 'Dominic Krimmer,Luis Alfredo da Silva (luis.adasilvaf@gmail.com),Diego Carvajal, diegoivanc@gmail.com , odoo loco',
     'license': 'AGPL-3',
     'maintainer': ' ',
