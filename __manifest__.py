@@ -5,9 +5,6 @@
 # Part of Odoo. See LICENSE file for full copyright and licensing details.    #
 #                                                                             #
 #                                                                             #
-# Copyright (C) 2016  Dominic Krimmer                                         #
-#                     Luis Alfredo da Silva (luis.adasilvaf@gmail.com)        #
-#                     Diego Carvajal, diegoivanc@gmail.com                    #
 #                                                                             #
 # Co-Authors    Odoo LoCo                                                     #
 #               Localización funcional de Odoo para Colombia                  #
@@ -28,10 +25,10 @@
 ###############################################################################
 
 {
-    'name': 'Colombia - Punto de venta - tax extension',
+    'name': 'Colombia - Punto de venta - Tax Extensionn',
     'category': 'Localization',
     'version': '12.0',
-    'author': 'Dominic Krimmer,Luis Alfredo da Silva (luis.adasilvaf@gmail.com),Diego Carvajal, diegoivanc@gmail.com , odoo loco',
+    'author': 'Odoo loco',
     'license': 'AGPL-3',
     'maintainer': ' ',
     'website': ' ',
